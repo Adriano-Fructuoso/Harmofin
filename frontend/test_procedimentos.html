@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Procedimentos</title>
+</head>
+<body>
+    <h1>Teste de Procedimentos</h1>
+    <button onclick="testarCriarProcedimento()">Testar Criar Procedimento</button>
+    <button onclick="testarListarProcedimentos()">Testar Listar Procedimentos</button>
+    <div id="resultado"></div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:8001/api/v1';
+
+        async function testarCriarProcedimento() {
+            try {
+                const dados = {
+                    nome: "Teste HTML",
+                    descricao: "Teste via HTML",
+                    valor_padrao: 150.0,
+                    ativo: true,
+                    materiais_padrao: [
+                        {
+                            material_id: 1,
+                            quantidade_padrao: 1.0
+                        }
+                    ]
+                };
+
+                console.log('Enviando dados:', dados);
+
+                const response = await fetch(`${API_BASE_URL}/procedimentos`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dados)
+                });
+
+                console.log('Status:', response.status);
+                console.log('Headers:', response.headers);
+
+                if (response.ok) {
+                    const resultado = await response.json();
+                    console.log('Sucesso:', resultado);
+                    document.getElementById('resultado').innerHTML = `<p style="color: green;">✅ Sucesso: ${JSON.stringify(resultado, null, 2)}</p>`;
+                } else {
+                    const erro = await response.text();
+                    console.error('Erro:', erro);
+                    document.getElementById('resultado').innerHTML = `<p style="color: red;">❌ Erro ${response.status}: ${erro}</p>`;
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                document.getElementById('resultado').innerHTML = `<p style="color: red;">❌ Erro na requisição: ${error.message}</p>`;
+            }
+        }
+
+        async function testarListarProcedimentos() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/procedimentos`);
+                
+                if (response.ok) {
+                    const resultado = await response.json();
+                    console.log('Procedimentos:', resultado);
+                    document.getElementById('resultado').innerHTML = `<p style="color: green;">✅ Listagem: ${resultado.total} procedimentos encontrados</p>`;
+                } else {
+                    const erro = await response.text();
+                    console.error('Erro:', erro);
+                    document.getElementById('resultado').innerHTML = `<p style="color: red;">❌ Erro ${response.status}: ${erro}</p>`;
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                document.getElementById('resultado').innerHTML = `<p style="color: red;">❌ Erro na requisição: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html> 

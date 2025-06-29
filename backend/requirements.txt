@@ -1,0 +1,30 @@
+#	•	O que vai aqui:
+#Lista de dependências do projeto.
+#	•	Responsabilidades:
+#	•	Ter os nomes dos pacotes que o projeto precisa para rodar (Ex: streamlit, pandas, etc).
+#	•	Facilitar a instalação do projeto em outro computador/servidor.
+#	•	Exemplo de conteúdo inicial:
+
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Database
+sqlalchemy==2.0.23
+
+# Validation
+pydantic==2.5.0
+pydantic[email]==2.5.0
+
+# Utils
+python-multipart==0.0.6
+python-dotenv==1.1.1
+
+# Development
+pytest==7.4.0
+pytest-asyncio==0.21.1
+httpx==0.25.0
+
+# Data Analysis (para scripts futuros)
+pandas==2.3.0
+numpy==2.0.2
