@@ -197,7 +197,7 @@ class AtendimentoFiltro(BaseModel):
     procedimento_id: Optional[int] = None
     data_inicio: Optional[datetime] = None
     data_fim: Optional[datetime] = None
-    status: Optional[str] = None 
+    status: Optional[str] = None
 
 # Adicionar referência para Material no final do arquivo para evitar problemas de importação circular
 if TYPE_CHECKING:

@@ -1,3 +1,9 @@
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-green.svg)](https://fastapi.tiangolo.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Produção-brightgreen.svg)]()
+
 # Harmofin - Sistema de Gestão de Clínicas de Harmonização
 
 Sistema completo para gestão de clínicas de harmonização orofacial, desenvolvido com FastAPI (backend) e React (frontend).

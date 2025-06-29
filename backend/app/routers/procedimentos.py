@@ -45,11 +45,26 @@ async def listar_procedimentos(
         total = query.count()
         procedimentos = query.offset(skip).limit(limit).all()
         
-        # Converter para schemas
+        # Converter para schemas - VERSÃO SIMPLIFICADA
         procedimentos_schemas = []
         for p in procedimentos:
-            p_schema = ProcedimentoSchema.model_validate(p)
-            procedimentos_schemas.append(p_schema)
+            try:
+                # Usar conversão automática do Pydantic
+                p_schema = ProcedimentoSchema.model_validate(p)
+                procedimentos_schemas.append(p_schema)
+            except Exception as e:
+                print(f"⚠️  Erro ao converter procedimento {p.id}: {e}")
+                # Fallback: criar schema básico
+                p_schema = ProcedimentoSchema(
+                    id=p.id,
+                    nome=p.nome,
+                    descricao=p.descricao,
+                    valor_padrao=p.valor_padrao,
+                    ativo=p.ativo,
+                    data_cadastro=p.data_cadastro,
+                    materiais_padrao=[]
+                )
+                procedimentos_schemas.append(p_schema)
         
         return ProcedimentoList(procedimentos=procedimentos_schemas, total=total)
         
