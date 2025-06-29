@@ -1,0 +1,12 @@
+#	•	O que vai aqui:
+#Lista de dependências do projeto.
+#	•	Responsabilidades:
+#	•	Ter os nomes dos pacotes que o projeto precisa para rodar (Ex: streamlit, pandas, etc).
+#	•	Facilitar a instalação do projeto em outro computador/servidor.
+#	•	Exemplo de conteúdo inicial:
+
+
+streamlit
+pandas
+matplotlib
+numpy

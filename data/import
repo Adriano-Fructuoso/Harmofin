@@ -1,0 +1,11 @@
+"""3. data/
+	•	O que vai aqui:
+Local para os arquivos de dados da aplicação (por exemplo, dados.csv).
+	•	Responsabilidades:
+	•	Guardar o arquivo principal de receitas/despesas.
+	•	Importante: Nunca versionar dados sensíveis, mas para projetos pessoais tudo ok.
+	•	Exemplo:
+	•	Um CSV com as colunas: data, descrição, categoria, valor, tipo (receita/despesa).
+
+⸻
+"""
