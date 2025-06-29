@@ -38,6 +38,7 @@ venv-clientes/
 *.db
 *.sqlite
 *.sqlite3
+clientes.db
 
 # Logs
 *.log
@@ -88,4 +89,8 @@ coverage.xml
 .ipynb_checkpoints
 
 # pyenv
-.python-version clientes.db
+.python-version
+
+# Scripts temporários
+fix_*.py
+test_*.py
