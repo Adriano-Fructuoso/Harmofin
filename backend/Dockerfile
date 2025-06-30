@@ -5,6 +5,7 @@ WORKDIR /app
 # Instalar dependências do sistema
 RUN apt-get update && apt-get install -y \
     gcc \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar requirements e instalar dependências Python
@@ -15,8 +16,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ ./app/
 COPY scripts/ ./scripts/
 
+# Criar diretório para logs
+RUN mkdir -p /app/logs
+
 # Expor porta
 EXPOSE 8001
 
-# Comando para executar a aplicação
-CMD ["python", "app/main.py"] 
+# Comando para executar a aplicação com uvicorn
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"] 

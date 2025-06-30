@@ -1,10 +1,13 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
+# Instalar dependências do sistema
+RUN apk add --no-cache git
+
 # Copiar package.json e instalar dependências
 COPY package*.json ./
-RUN npm install
+RUN npm ci --only=production
 
 # Copiar código da aplicação
 COPY . .
@@ -13,4 +16,4 @@ COPY . .
 EXPOSE 5173
 
 # Comando para executar em desenvolvimento
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"] 
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"] 

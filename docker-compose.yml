@@ -6,11 +6,21 @@ services:
     ports:
       - "8001:8001"
     volumes:
-      - ./clientes.db:/app/clientes.db
+      - ./backend/clientes.db:/app/clientes.db
+      - ./backend/app:/app/app
+      - ./backend/scripts:/app/scripts
     environment:
-      - ENVIRONMENT=development
-    depends_on:
-      - frontend
+      - ENVIRONMENT=production
+      - HOST=0.0.0.0
+      - PORT=8001
+    networks:
+      - harmofin-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   frontend:
     build: ./frontend
@@ -18,21 +28,31 @@ services:
       - "5173:5173"
     volumes:
       - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
     environment:
       - VITE_API_URL=http://localhost:8001
-    command: npm run dev
+    networks:
+      - harmofin-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+    command: npm run dev -- --host 0.0.0.0
 
-  # Opcional: Banco PostgreSQL para produção
-  # postgres:
-  #   image: postgres:13
-  #   environment:
-  #     POSTGRES_DB: harmofin
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: password
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
+# Opcional: Banco PostgreSQL para produção
+# postgres:
+#   image: postgres:13
+#   environment:
+#     POSTGRES_DB: harmofin
+#     POSTGRES_USER: postgres
+#     POSTGRES_PASSWORD: password
+#   ports:
+#     - "5432:5432"
+#   volumes:
+#     - postgres_data:/var/lib/postgresql/data
 
 # volumes:
 #   postgres_data: 
+
+networks:
+  harmofin-network:
+    driver: bridge 
