@@ -20,11 +20,14 @@ pydantic[email]==2.5.0
 python-multipart==0.0.6
 python-dotenv==1.1.1
 
-# Development
-pytest==7.4.0
-pytest-asyncio==0.21.1
-httpx==0.25.0
-
-# Data Analysis (para scripts futuros)
+# Data Analysis
 pandas==2.3.0
 numpy==2.0.2
+
+# Streamlit para deploy na cloud
+streamlit==1.35.0
+
+# Dependências de desenvolvimento (remover em produção)
+# pytest==7.4.0
+# pytest-asyncio==0.21.1
+# httpx==0.25.0
