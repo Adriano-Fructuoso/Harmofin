@@ -3,11 +3,11 @@
 .gitignore
 
 # Docker
-Dockerfile*
 docker-compose*
 .dockerignore
 
-# Node.js
+# Frontend (não necessário para o backend)
+frontend/
 node_modules
 npm-debug.log*
 yarn-debug.log*
@@ -91,4 +91,11 @@ jspm_packages/
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Scripts desnecessários
+*.sh
+DOCKER.md
+DOCKER.md
+cleanup.sh
+docker-start.sh 
