@@ -20,6 +20,7 @@ __pycache__
 *.pyd
 .Python
 env
+venv
 pip-log.txt
 pip-delete-this-directory.txt
 .tox
@@ -96,6 +97,13 @@ temp/
 # Scripts desnecessários
 *.sh
 DOCKER.md
-DOCKER.md
 cleanup.sh
-docker-start.sh 
+docker-start.sh
+
+# Data files
+data/
+*.csv
+
+# Documentation
+docs/
+*.md 
