@@ -29,9 +29,4 @@ primary_region = "gru"
 [machine]
   cpu_kind = "shared"
   cpus = 1
-  memory_mb = 256
-
-[[vm]]
-  cpu_kind = "shared"
-  cpus = 1
   memory_mb = 256 
